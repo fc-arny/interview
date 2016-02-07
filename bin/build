@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -o nounset
+set -o errexit
+
+srcdir=`dirname "$(dirname "$(realpath $0)")"`
+
+rm -rf build/*.pdf
+
+for f in "$srcdir/"[[:digit:]]*.md; do
+  basefile="$(basename "$f")"
+  out="${srcdir}/build/${basefile%%.*}.pdf"
+  pandoc -f markdown_github --latex-engine=xelatex --highlight-style monochrome -V lang:russian -V mainfont="Liberation Serif" -V sansfont="Liberation Sans" -V monofont="Liberation Mono" -V fontsize=12pt -o "$out" "$f"
+done
+
+dest="${srcdir}/build/1 — Задачи.pdf"
+pdfunite "${srcdir}/build/"[[:digit:]]\ —\ Задачи*.pdf "$dest"
+
+echo "Результирующие файлы сохранёны в файлы:"
+echo " $(realpath "${srcdir}/build/0 — Опросник.pdf")"
+echo " $dest"
