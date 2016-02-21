@@ -10,7 +10,7 @@ rm -rf build/*.pdf
 for f in "$srcdir/"[[:digit:]]*.md; do
   basefile="$(basename "$f")"
   out="${srcdir}/build/${basefile%%.*}.pdf"
-  pandoc -f markdown_github --latex-engine=xelatex --highlight-style monochrome -V lang:russian -V mainfont="Liberation Serif" -V sansfont="Liberation Sans" -V monofont="Liberation Mono" -V fontsize=12pt -o "$out" "$f"
+  pandoc -f markdown_github --latex-engine=xelatex --highlight-style monochrome -V lang:russian -V mainfont="Liberation Serif" -V sansfont="Liberation Sans" -V monofont="Liberation Mono" -V fontsize=12pt -V geometry:"top=1cm, bottom=1cm, left=2.5cm, right=1cm" -o "$out" "$f"
 done
 
 dest="${srcdir}/build/1 — Задачи.pdf"
