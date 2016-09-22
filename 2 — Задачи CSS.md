@@ -14,7 +14,7 @@
     Даны CSS-правила:
 
     ```css
-    div         { color: red';    }
+    div         { color: red;    }
     div.foo     { color: green;   }
     .foo        { color: cyan;    }
     .foo#bar    { color: magenta; }
